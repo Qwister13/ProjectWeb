@@ -1,0 +1,21 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div>
+    <form action="/register" method="post">
+        <p>
+            <label>Email</label>
+            <input name="Email" type="text" value="@Model.Email" />
+            <div сlass="error"> @Html.ValidationMessageFor(m => m.Email)</div>
+        </p>
+        <p>
+            <label>Пароль</label>
+            <input name="Password" type="password" />
+            <div сlass="error"> @Html.ValidationMessageFor(m => m.Password)</div>
+        </p>
+        <button>Зарегистрироваться</button>
+    </form>
+</div>
