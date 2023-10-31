@@ -36,6 +36,21 @@ namespace ProjectWebTest
                 // validate: should be in the DB
                 emailValidationResult = await authBL.ValidateEmail(email);
                 Assert.IsNotNull(emailValidationResult);
+
+                var userDalResult = await authDal.GetUser(userId);
+                Assert.That(email, Is.EqualTo(userDalResult.Email)); // 1 аргумент - ожидаемое значение
+                                                                     // 2 аргумент - реальное значение,                                                                
+                Assert.IsNotNull(userDalResult.Salt);
+
+                var userByEmailDalResult = await authDal.GetUser(email);
+                Assert.That(email, Is.EqualTo(userDalResult.Email));
+
+                // validate: should be in the DB
+                emailValidationResult = await authBL.ValidateEmail(email);
+                Assert.IsNotNull(emailValidationResult);
+
+                string encPassword = encrypt.HashPassword("qwer1234", userByEmailDalResult.Salt);
+                Assert.That(encPassword, Is.EqualTo(userByEmailDalResult.Password));
             }
         }
     }
