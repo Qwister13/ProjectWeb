@@ -15,11 +15,14 @@ namespace ProjectWebTest.Helpers
         protected IAuthDAL authDal = new AuthDAL();
         protected IEncrypt encrypt = new Encrypt();
         protected IHttpContextAccessor httpContextAccessor = new HttpContextAccessor();
-        protected IAuthBL authBL;
+        protected IAuth authBL;
+        protected IDbSessionDAL dbSessionDAL = new DbSessionDAL();
+        protected IDbSession dbSession;
 
         public BaseTest()
         {
-            authBL = new AuthBL(authDal, encrypt, httpContextAccessor);
+            dbSession = new DbSession(dbSessionDAL, httpContextAccessor);
+            authBL = new Auth(authDal, encrypt, httpContextAccessor, dbSession);
         }
     }
 }

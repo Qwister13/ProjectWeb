@@ -16,9 +16,10 @@ namespace ProjectWeb.Controllers
             this.currentUser = currentUser;
         }
 
-        public IActionResult Index()
-        {            
-            return View(currentUser.IsLoggedIn());
+        public async Task<IActionResult> Index()
+        {
+            var isLoggenIn = await currentUser.IsLoggedIn();
+            return View(isLoggenIn);
         }
 
         public IActionResult Privacy()

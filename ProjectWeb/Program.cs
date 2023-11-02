@@ -7,13 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<ProjectWeb.BL.Auth.IAuthBL, ProjectWeb.BL.Auth.AuthBL>();
+builder.Services.AddScoped<ProjectWeb.BL.Auth.IAuth, ProjectWeb.BL.Auth.Auth>();
 builder.Services.AddSingleton<ProjectWeb.BL.Auth.IEncrypt, ProjectWeb.BL.Auth.Encrypt>();
 builder.Services.AddScoped<ProjectWeb.BL.Auth.ICurrentUser, ProjectWeb.BL.Auth.CurrentUser>();
 builder.Services.AddSingleton<ProjectWeb.DAL.IAuthDAL, ProjectWeb.DAL.AuthDAL>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddMvc().AddSessionStateTempDataProvider();
-builder.Services.AddSession();
+builder.Services.AddSingleton<ProjectWeb.DAL.IDbSessionDAL, ProjectWeb.DAL.DbSessionDAL>();
+builder.Services.AddScoped<ProjectWeb.BL.Auth.IDbSession, ProjectWeb.BL.Auth.DbSession>();
+
+
+builder.Services.AddMvc();
+
 
 var app = builder.Build();
 
@@ -28,7 +32,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession();
 
 app.UseAuthorization();
 

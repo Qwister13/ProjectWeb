@@ -10,9 +10,9 @@ namespace ProjectWeb.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly IAuthBL authBl;
+        private readonly IAuth authBl;
 
-        public RegisterController(IAuthBL authBl)
+        public RegisterController(IAuth authBl)
         {
             this.authBl = authBl;
         }

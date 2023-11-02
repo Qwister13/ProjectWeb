@@ -8,8 +8,8 @@ namespace ProjectWeb.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IAuthBL authBl;
-        public LoginController(IAuthBL authBl)
+        private readonly IAuth authBl;
+        public LoginController(IAuth authBl)
         {
             this.authBl = authBl;
         }
