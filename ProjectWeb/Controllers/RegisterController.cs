@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.BL;
 using ProjectWeb.BL.Auth;
 using ProjectWeb.DAL;
 using ProjectWeb.DAL.Models;
@@ -28,15 +29,6 @@ namespace ProjectWeb.Controllers
         [Route("/register")]
         public async Task<IActionResult> IndexSave(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var errorModel = await authBl.ValidateEmail(model.Email ?? "");
-                if (errorModel != null)
-                {
-                    ModelState.TryAddModelError("Email", errorModel.ErrorMessage!);
-                }
-
-            }
             
             if(ModelState.IsValid)
             {
@@ -50,8 +42,15 @@ namespace ProjectWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                await authBl.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
-                return Redirect("/");
+                try
+                {
+                    await authBl.Register(AuthMapper.MapRegisterViewModelToUserModel(model));
+                    return Redirect("/");
+                }
+                catch (DuplicateEmailException)
+                {
+                    ModelState.AddModelError("Email", "Пользователь с таким email уже зарегистрирован");
+                }
             }
             return View("Index", model);
         }

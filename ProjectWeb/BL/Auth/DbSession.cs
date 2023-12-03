@@ -3,28 +3,25 @@ using ProjectWeb.DAL;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using ProjectWeb.BL.General;
+using Microsoft.Extensions.Options;
 
 namespace ProjectWeb.BL.Auth
 {
     public class DbSession : IDbSession
     {
         private readonly IDbSessionDAL sessionDAL;
-        private readonly IHttpContextAccessor httpContextAccessor;
-
-        public DbSession(IDbSessionDAL sessionDAL, IHttpContextAccessor httpContextAccessor)
+        private readonly IWebCookie webCookie;   
+        public DbSession(IDbSessionDAL sessionDAL, IWebCookie webCookie)
         {
             this.sessionDAL = sessionDAL;
-            this.httpContextAccessor = httpContextAccessor;
+            this.webCookie = webCookie;
         }
 
         private void CreateSessionCookie(Guid sessionid)
         {
-            CookieOptions options = new CookieOptions();
-            options.Path = "/";
-            options.HttpOnly = true;
-            options.Secure = true;
-            httpContextAccessor?.HttpContext?.Response.Cookies.Delete(AuthConstanst.SessionCookieName);
-            httpContextAccessor?.HttpContext?.Response.Cookies.Append(AuthConstanst.SessionCookieName, sessionid.ToString(), options);
+            this.webCookie.Delete(AuthConstants.SessionCookieName);
+            this.webCookie.AddSecure(AuthConstants.SessionCookieName, sessionid.ToString());
         }
 
         private async Task<SessionModel> CreateSession()
@@ -46,9 +43,10 @@ namespace ProjectWeb.BL.Auth
                 return sessionModel;
 
             Guid sessionId;
-            var cookie = httpContextAccessor?.HttpContext?.Request?.Cookies.FirstOrDefault(m => m.Key == AuthConstanst.SessionCookieName);
-            if (cookie != null && cookie.Value.Value != null)
-                sessionId = Guid.Parse(cookie.Value.Value);
+
+            var sessionString = webCookie.Get(AuthConstants.SessionCookieName);
+            if (sessionString != null)
+                sessionId = Guid.Parse(sessionString);
             else
                 sessionId = Guid.NewGuid();
 
@@ -64,7 +62,7 @@ namespace ProjectWeb.BL.Auth
 
         public async Task<int> SetUserId(int userId)
         {
-            var data = await this.GetSession();
+            var data = await GetSession();
             data.UserId = userId;
             data.DbSessionId = Guid.NewGuid();
             CreateSessionCookie(data.DbSessionId);
@@ -73,15 +71,20 @@ namespace ProjectWeb.BL.Auth
 
         public async Task<int?> GetUserId()
         {
-            var data = await this.GetSession();
+            var data = await GetSession();
             return data.UserId;
         }
 
         public async Task<bool> IsLoggedIn()
         {
-            var data = await this.GetSession();
+            var data = await GetSession();
             return data.UserId != null;
-        }
+        }   
 
+        public async Task Lock()
+        {
+            var data = await GetSession();
+            await sessionDAL.Lock(data.DbSessionId);
+        }
     }
 }

@@ -7,6 +7,8 @@ using System;
 using System.Reflection.Metadata.Ecma335;
 using System.ComponentModel.DataAnnotations;
 using ProjectWeb.BL;
+using Microsoft.AspNetCore.Server.IIS.Core;
+using ProjectWeb.BL.General;
 
 namespace ProjectWeb.BL.Auth
 {
@@ -16,15 +18,19 @@ namespace ProjectWeb.BL.Auth
         private readonly IEncrypt encrypt;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IDbSession dbSession;
+        private readonly IWebCookie webCookie;
         public Auth(IAuthDAL authDal,
             IEncrypt encrypt,
             IHttpContextAccessor httpContextAccessor,
-            IDbSession dbSession)
+            IWebCookie webCookie,
+            IDbSession dbSession
+            )
         {
             this.authDal = authDal;
             this.encrypt = encrypt;
             this.httpContextAccessor = httpContextAccessor;
             this.dbSession = dbSession;
+            this.webCookie = webCookie;
         }
 
         public async Task<UserModel> GetUser(string email)
@@ -57,19 +63,38 @@ namespace ProjectWeb.BL.Auth
             if (user.UserId != null && user.Password == encrypt.HashPassword(password, user.Salt))
             {
                 await Login(user.UserId ?? 0);
-                return user.UserId ?? 0; 
+                return user.UserId ?? 0;
             }
-            throw new AuthorizationException();         
+            throw new AuthorizationException();
         }
 
-        public async Task<ValidationResult?> ValidateEmail(string email)
+        public async Task ValidateEmail(string email)     
         {
             var user = await authDal.GetUser(email);
             if (user.UserId != null)
             {
-                return new ValidationResult("Email уже зарегистрирован");
+                throw new DuplicateEmailException();
             }
-            return null;
+        }
+
+        public async Task CheckEmail(string email)
+        {
+            var check = await authDal.GetUser(email);
+            if (check.UserId == null)
+            {
+                throw new AuthorizationException();
+            }
+        }
+
+        public async Task Register(UserModel user)
+         {
+             using (var scope = Helpers.CreateTransactionScope())
+             {
+                 await dbSession.Lock();
+                 await ValidateEmail(user.Email);
+                 await CreateUser(user);
+                 scope.Complete();
+             }
         }
 
         public async Task<bool> IsValidEmailDomain(string email, string[] allowedDomains)
@@ -80,6 +105,6 @@ namespace ProjectWeb.BL.Auth
                 return allowedDomains.Any(allowedDomains => domain.Equals(allowedDomains, StringComparison.OrdinalIgnoreCase));
             }
             return false;
-        }
+        }     
     }
 }

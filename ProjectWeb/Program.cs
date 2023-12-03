@@ -14,6 +14,7 @@ builder.Services.AddSingleton<ProjectWeb.DAL.IAuthDAL, ProjectWeb.DAL.AuthDAL>()
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSingleton<ProjectWeb.DAL.IDbSessionDAL, ProjectWeb.DAL.DbSessionDAL>();
 builder.Services.AddScoped<ProjectWeb.BL.Auth.IDbSession, ProjectWeb.BL.Auth.DbSession>();
+builder.Services.AddScoped<ProjectWeb.BL.General.IWebCookie, ProjectWeb.BL.General.WebCookie>();
 
 
 builder.Services.AddMvc();

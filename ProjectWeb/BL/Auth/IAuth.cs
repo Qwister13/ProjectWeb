@@ -8,7 +8,9 @@ namespace ProjectWeb.BL.Auth
     {
         Task<int> CreateUser(UserModel user);
         Task<int> Authenticate(string email, string password, bool rememberMe);
-        Task<ValidationResult?> ValidateEmail(string email);
+        Task ValidateEmail(string email);
+        Task CheckEmail(string email);
         Task<bool> IsValidEmailDomain(string email, string[] domains);
+        Task Register(UserModel user);
     }
 }

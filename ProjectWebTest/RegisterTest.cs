@@ -1,3 +1,4 @@
+using ProjectWeb.BL;
 using ProjectWebTest.Helpers;
 using System.Transactions;
 
@@ -19,8 +20,7 @@ namespace ProjectWebTest
                 string email = Guid.NewGuid().ToString() + "@test.com";
                 
                 // validate: should not be in the DB
-                var emailValidationResult = await authBL.ValidateEmail(email);
-                Assert.IsNull(emailValidationResult);
+                Assert.Throws<AuthorizationException>(delegate { authBL.ValidateEmail(email).GetAwaiter().GetResult(); });
 
                 // create user
                 int userId = await authBL.CreateUser(
@@ -32,10 +32,6 @@ namespace ProjectWebTest
 
                 Assert.Greater(userId, 0);
 
-                // validate: should be in the DB
-                emailValidationResult = await authBL.ValidateEmail(email);
-                Assert.IsNotNull(emailValidationResult);
-
                 var userDalResult = await authDal.GetUser(userId);
                 Assert.That(email, Is.EqualTo(userDalResult.Email)); // 1 аргумент - ожидаемое значение
                                                                      // 2 аргумент - реальное значение,                                                                
@@ -45,8 +41,7 @@ namespace ProjectWebTest
                 Assert.That(email, Is.EqualTo(userDalResult.Email));
 
                 // validate: should be in the DB
-                emailValidationResult = await authBL.ValidateEmail(email);
-                Assert.IsNotNull(emailValidationResult);
+                Assert.Throws<DuplicateEmailException>(delegate { authBL.ValidateEmail(email).GetAwaiter().GetResult(); });
 
                 string encPassword = encrypt.HashPassword("qwer1234", userByEmailDalResult.Salt);
                 Assert.That(encPassword, Is.EqualTo(userByEmailDalResult.Password));

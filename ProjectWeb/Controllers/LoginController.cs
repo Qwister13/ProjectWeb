@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.BL;
 using ProjectWeb.BL.Auth;
 using ProjectWeb.DAL;
 using ProjectWeb.DAL.Models;
 using ProjectWeb.ViewModels;
+using System.Text.RegularExpressions;
 
 namespace ProjectWeb.Controllers
 {
@@ -23,13 +25,18 @@ namespace ProjectWeb.Controllers
 
         [HttpPost]
         [Route("/login")]
-        public async Task<IActionResult> IndexSave(LoginViewModel model)
+        public async Task<IActionResult> IndexSave(LoginViewModel  model)
         {
             if (ModelState.IsValid)
             {
-                var loginError = await authBl.ValidateEmail(model.Email!);
-                if (loginError == null)
+                try
+                {
+                    await authBl.CheckEmail(model.Email ?? "");
+                }
+                catch (AuthorizationException)
+                {
                     ModelState.AddModelError("Email", "Email ещё не зарегистрирован");
+                }
             }
 
             if (ModelState.IsValid)
@@ -39,7 +46,7 @@ namespace ProjectWeb.Controllers
                     await authBl.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
                     return Redirect("/");
                 }
-                catch (ProjectWeb.BL.AuthorizationException)
+                catch (AuthorizationException)
                 {
                     ModelState.AddModelError("Email", "Email или пароль неверный");
                 }

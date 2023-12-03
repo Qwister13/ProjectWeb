@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ProjectWeb.BL.Auth;
 using ProjectWeb.DAL;
 using Microsoft.AspNetCore.Http;
+using ProjectWeb.BL.General;
 
 namespace ProjectWebTest.Helpers
 {
@@ -16,13 +17,15 @@ namespace ProjectWebTest.Helpers
         protected IEncrypt encrypt = new Encrypt();
         protected IHttpContextAccessor httpContextAccessor = new HttpContextAccessor();
         protected IAuth authBL;
-        protected IDbSessionDAL dbSessionDAL = new DbSessionDAL();
+        protected IDbSessionDAL dbSessionDAL = new DbSessionDAL();  
         protected IDbSession dbSession;
+        protected IWebCookie webCookie;
 
         public BaseTest()
         {
-            dbSession = new DbSession(dbSessionDAL, httpContextAccessor);
-            authBL = new Auth(authDal, encrypt, httpContextAccessor, dbSession);
+            webCookie = new TestCookie();
+            dbSession = new DbSession(dbSessionDAL, webCookie);
+            authBL = new Auth(authDal, encrypt, httpContextAccessor, webCookie, dbSession);
         }
     }
 }

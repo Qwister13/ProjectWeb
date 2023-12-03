@@ -1,4 +1,6 @@
-﻿namespace ProjectWeb.BL.General
+﻿using System.Transactions;
+
+namespace ProjectWeb.BL.General
 {
     public static class Helpers
     {
@@ -8,6 +10,14 @@
             if(int.TryParse(str, out value))
                 return value;
             return def;
+        }
+        public static TransactionScope CreateTransactionScope(int second = 60)
+        {
+            return new TransactionScope(
+                TransactionScopeOption.Required,
+                new TimeSpan(0, 0, second),
+                TransactionScopeAsyncFlowOption.Enabled
+                );
         }
     }
 }

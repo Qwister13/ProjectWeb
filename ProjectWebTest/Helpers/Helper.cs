@@ -9,7 +9,7 @@ namespace ProjectWebTest.Helpers
 {
     static public class Helper
     {
-        public static TransactionScope CreateTransactionScope(int second = 1)
+        public static TransactionScope CreateTransactionScope(int second = 99999999)
         {
             return new TransactionScope(
                 TransactionScopeOption.Required,

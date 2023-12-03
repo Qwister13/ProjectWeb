@@ -1,6 +1,6 @@
-﻿namespace ProjectWeb.BL.Exception
+﻿namespace ProjectWeb.BL
 {
-    public class DuplicateException
+    public class DuplicateEmailException : Exception
     {
     }
 }
