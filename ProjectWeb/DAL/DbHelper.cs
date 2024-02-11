@@ -3,9 +3,10 @@ using Npgsql;
 
 namespace ProjectWeb.DAL
 {
-    public class DbHelper
+    public static class DbHelper
     {
         public static string ConnString = "User ID=postgres;Password=password;Host=localhost;Port=5432;Database=postgres";
+
         public static async Task<int> ExecuteScalarAsync(string sql, object model)
         {
             using (var connection = new NpgsqlConnection(DbHelper.ConnString))

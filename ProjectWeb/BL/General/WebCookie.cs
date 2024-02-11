@@ -10,20 +10,24 @@ namespace ProjectWeb.BL.General
         {
             this.httpContextAccessor = httpContextAccessor;
         }
-        public void AddSecure(string cookieName, string value)
+        public void AddSecure(string cookieName, string value, int days = 0)
         {
             CookieOptions options = new CookieOptions();
             options.Path = "/";
             options.HttpOnly = true;
             options.Secure = true;
-            httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value.ToString(), options);
+            if (days > 0)
+                options.Expires = DateTimeOffset.UtcNow.AddDays(30);
+            httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value, options);
         }
 
-        public void Add(string cookieName, string value)
+        public void Add(string cookieName, string value, int days = 0)
         {
             CookieOptions options = new CookieOptions();
             options.Path = "/";
-            httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value.ToString(), options);
+            if (days > 0)
+                options.Expires = DateTimeOffset.UtcNow.AddDays(30);
+            httpContextAccessor?.HttpContext?.Response.Cookies.Append(cookieName, value, options);
         }
 
         public void Delete(string cookieName)
@@ -37,6 +41,16 @@ namespace ProjectWeb.BL.General
             if (cookie != null && cookie.Value.Value != null)
                 return cookie.Value.Value;
             return null;
+        }
+
+        public void AddSecure(string cookieName, string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(string cookieName, string value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

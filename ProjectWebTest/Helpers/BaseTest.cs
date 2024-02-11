@@ -20,12 +20,13 @@ namespace ProjectWebTest.Helpers
         protected IDbSessionDAL dbSessionDAL = new DbSessionDAL();  
         protected IDbSession dbSession;
         protected IWebCookie webCookie;
+        protected IUserTokenDAL userTokenDAL = new UserTokenDAL();
 
         public BaseTest()
         {
             webCookie = new TestCookie();
             dbSession = new DbSession(dbSessionDAL, webCookie);
-            authBL = new Auth(authDal, encrypt, httpContextAccessor, webCookie, dbSession);
+            authBL = new Auth(authDal, encrypt, webCookie, dbSession, userTokenDAL);
         }
     }
 }

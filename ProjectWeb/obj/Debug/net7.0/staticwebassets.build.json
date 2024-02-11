@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DF5UhZjBuxVe8K8dBblzWGj+GfZGkXAW+QUnK1wEV50=",
+  "Hash": "3MRNm/8KXbQrhc8ZX5X8PzG7lzDdObLu8ZVxC16X9hw=",
   "Source": "ProjectWeb",
   "BasePath": "_content/ProjectWeb",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\1D\\1D2A\\EDKM6162.jpg"
+    },
+    {
+      "Identity": "D:\\ProjectWeb\\ProjectWeb\\wwwroot\\images\\39\\39F4\\AGJC0878.jpg",
+      "SourceId": "ProjectWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ProjectWeb\\ProjectWeb\\wwwroot\\",
+      "BasePath": "_content/ProjectWeb",
+      "RelativePath": "images/39/39F4/AGJC0878.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\39\\39F4\\AGJC0878.jpg"
     },
     {
       "Identity": "D:\\ProjectWeb\\ProjectWeb\\wwwroot\\images\\B2\\2ACC\\HQXF9857.jpg",
