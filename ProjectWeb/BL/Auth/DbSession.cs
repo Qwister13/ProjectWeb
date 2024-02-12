@@ -86,5 +86,10 @@ namespace ProjectWeb.BL.Auth
             var data = await GetSession();
             await sessionDAL.Lock(data.DbSessionId);
         }
+
+        public void ResetSessionCache()
+        {
+            sessionModel = null;
+        }
     }
 }

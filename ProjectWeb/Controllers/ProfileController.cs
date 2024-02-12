@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectWeb.Middleware;
 using ProjectWeb.ViewModels;
 using System.Security.Cryptography;
+using static ProjectWeb.Middleware.SiteNotAuthorizeAttribute;
 
 namespace ProjectWeb.Controllers
 {
+    [SiteAuthorize()]
     public class ProfileController : Controller
     {
         [HttpGet]
@@ -15,6 +18,7 @@ namespace ProjectWeb.Controllers
 
         [HttpPost]
         [Route("/profile")]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> IndexSave(ProfileViewModel model)
         {
             //if(ModelState.IsValid())

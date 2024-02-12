@@ -5,18 +5,15 @@ namespace ProjectWeb.BL.Auth
 {
     public class CurrentUser : ICurrentUser
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IDbSession dbSession;
         private readonly IWebCookie webCookie;
         private readonly IUserTokenDAL userTokenDAL;
 
         public CurrentUser(
-            IHttpContextAccessor httpContextAccessor,
             IDbSession dbSession,
             IWebCookie webCookie,
             IUserTokenDAL userTokenDAL)
         {
-            this.httpContextAccessor = httpContextAccessor;
             this.dbSession = dbSession;
             this.webCookie = webCookie;
             this.userTokenDAL = userTokenDAL;

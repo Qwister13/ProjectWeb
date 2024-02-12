@@ -5,9 +5,11 @@ using ProjectWeb.DAL;
 using ProjectWeb.DAL.Models;
 using ProjectWeb.ViewModels;
 using System.Text.RegularExpressions;
+using ProjectWeb.Middleware;
 
 namespace ProjectWeb.Controllers
 {
+    [SiteNotAuthorize()]
     public class LoginController : Controller
     {
         private readonly IAuth authBl;
@@ -25,6 +27,7 @@ namespace ProjectWeb.Controllers
 
         [HttpPost]
         [Route("/login")]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> IndexSave(LoginViewModel  model)
         {
             if (ModelState.IsValid)

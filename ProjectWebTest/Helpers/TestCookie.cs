@@ -12,12 +12,12 @@ namespace ProjectWebTest.Helpers
     public class TestCookie : IWebCookie
     {
         Dictionary<string, string> cookies = new Dictionary<string, string>();
-        public void Add(string cookieName, string value)
+        public void Add(string cookieName, string value, int days)
         {
             cookies.Add(cookieName, value);
         }
 
-        public void AddSecure(string cookieName, string value)
+        public void AddSecure(string cookieName, string value, int days)
         {
             cookies.Add(cookieName, value);
         }

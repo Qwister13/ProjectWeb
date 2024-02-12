@@ -9,5 +9,6 @@ namespace ProjectWeb.BL.Auth
         Task<int?> GetUserId();
         Task<bool> IsLoggedIn();
         Task Lock();
+        void ResetSessionCache();
     }
 }

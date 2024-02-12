@@ -6,6 +6,7 @@
 
 <div>
     <form action="login" method="post">
+        @Html.AntiForgeryToken()
         <p>
             <label>Email</label>
             <input name="Email" type="text" value="@Model.Email" />

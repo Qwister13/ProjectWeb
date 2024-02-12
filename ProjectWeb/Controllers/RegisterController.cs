@@ -3,16 +3,17 @@ using ProjectWeb.BL;
 using ProjectWeb.BL.Auth;
 using ProjectWeb.DAL;
 using ProjectWeb.DAL.Models;
+using ProjectWeb.Middleware;
 using ProjectWeb.ViewMapper;
 using ProjectWeb.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProjectWeb.Controllers
 {
+    [SiteNotAuthorize()]
     public class RegisterController : Controller
     {
         private readonly IAuth authBl;
-
         public RegisterController(IAuth authBl)
         {
             this.authBl = authBl;
