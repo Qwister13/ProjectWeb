@@ -36,3 +36,14 @@ D:\ProjectWeb\ProjectWeb\obj\Debug\net7.0\refint\ProjectWeb.dll
 D:\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.pdb
 D:\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.genruntimeconfig.cache
 D:\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ref\ProjectWeb.dll
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.csproj.AssemblyReference.cache
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.AssemblyInfoInputs.cache
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.AssemblyInfo.cs
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.csproj.CoreCompileInputs.cache
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.RazorAssemblyInfo.cache
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.RazorAssemblyInfo.cs
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.dll
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\refint\ProjectWeb.dll
+C:\Users\Basyr\Desktop\repos\ProjectWeb\ProjectWeb\obj\Debug\net7.0\ProjectWeb.pdb

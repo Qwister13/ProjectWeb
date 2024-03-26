@@ -32,5 +32,10 @@ namespace ProjectWeb.DAL
                       where DbSessionID = @DbSessionID";
                 return await DbHelper.ExecuteScalarAsync(sql, model);
         }
+
+        public void ResetSessionCache(SessionModel sessionModel)
+        {
+            sessionModel = null;
+        }
     }
 }

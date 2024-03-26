@@ -18,8 +18,8 @@ namespace ProjectWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var isLoggenIn = await currentUser.IsLoggedIn();
-            return View(isLoggenIn);
+            
+            return View();
         }
 
         public IActionResult Privacy()
