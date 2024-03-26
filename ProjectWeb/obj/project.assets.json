@@ -801,11 +801,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj",
+      "projectUniqueName": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj",
       "projectName": "ProjectWeb",
-      "projectPath": "D:\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj",
+      "projectPath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj",
       "packagesPath": "C:\\Users\\Basyr\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjectWeb\\ProjectWeb\\obj\\",
+      "outputPath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Shared\\NuGetPackages"

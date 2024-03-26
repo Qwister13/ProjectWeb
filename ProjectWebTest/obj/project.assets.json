@@ -1797,11 +1797,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
+      "projectUniqueName": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
       "projectName": "ProjectWebTest",
-      "projectPath": "D:\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
+      "projectPath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
       "packagesPath": "C:\\Users\\Basyr\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjectWeb\\ProjectWebTest\\obj\\",
+      "outputPath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWebTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Shared\\NuGetPackages"
@@ -1822,8 +1822,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj": {
-              "projectPath": "D:\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj"
+            "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj": {
+              "projectPath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWeb\\ProjectWeb.csproj"
             }
           }
         }

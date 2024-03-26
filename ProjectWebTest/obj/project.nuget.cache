@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hv6G7+Oj/T8cSemYYiHuqRZzWPGEy26f1+UOQr7yWv67gix/VxQyfpkAqMWQEd35joqym+TGgdEddqlsDE70qg==",
+  "dgSpecHash": "C0jwfjcTmEaeEuuGaAuMWm8sXPo/K+11lQ6tqrx+mMZiE+9d1p9Tt1+vbnQwXi2f51fYZmxhKFJk0W02sMC7tQ==",
   "success": true,
-  "projectFilePath": "D:\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
+  "projectFilePath": "C:\\Users\\Basyr\\Desktop\\repos\\ProjectWeb\\ProjectWebTest\\ProjectWebTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Basyr\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\Basyr\\.nuget\\packages\\dapper\\2.1.15\\dapper.2.1.15.nupkg.sha512",

@@ -35,7 +35,9 @@ namespace ProjectWeb.BL.Auth
 
         public async Task<UserModel> GetUser(string email)
         {
+            var name = "string";
             return await authDal.GetUser(email);
+            
         }
 
         public async Task<UserModel> GetUser(int id)
